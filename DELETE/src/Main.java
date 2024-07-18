@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ public class Main {
         try{
             System.out.println("Conexión con la base de datos");
             preparedStatement = connection.prepareStatement(sql);
+            JOptionPane.showMessageDialog(null, "Eliminacion completa", null, JOptionPane.INFORMATION_MESSAGE);
             preparedStatement.setString(1, cedula);
 
             int filasEliminadas = preparedStatement.executeUpdate();

@@ -18,6 +18,8 @@ public class Form1 extends JFrame {
     public JTextField NombreMod;
     public JTextField Nota1Mod;
     public JTextField Nota2Mod;
+    public JTextField CIBorr;
+    public JButton Eliminar;
     public Container MainPanel;
 
     public Form1() {
@@ -57,9 +59,6 @@ public class Form1 extends JFrame {
                     Nota1M.setText("");
                     Nota2M.setText("");
 
-                    Form2 form2 = new Form2();
-
-
                 } catch (SQLException e2) {
                     System.out.println("No se pudo conectar con la base de datos");
                     throw new RuntimeException(e2);
@@ -73,6 +72,43 @@ public class Form1 extends JFrame {
                         System.out.println(e1.getMessage());
                     }
                 }
+            }
+        });
+        Eliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String url = "jdbc:mysql://localhost:3306/estudiantes";
+                String usuario = "root";
+                String password = "j.eduardo23";
+
+                String CEDULAB = CIBorr.getText();
+                String sql = "DELETE FROM estudiantes WHERE Cedula_EST = ?";
+
+                PreparedStatement preparedStatement = null;
+                try{
+                    Connection connection = DriverManager.getConnection(url, usuario, password);
+                    preparedStatement = connection.prepareStatement(sql);
+                    JOptionPane.showMessageDialog(null, "Eliminacion completa", null, JOptionPane.INFORMATION_MESSAGE);
+                    CedulaMOD.setText("");
+                    NombreMod.setText("");
+                    Nota1Mod.setText("");
+                    Nota2Mod.setText("");
+                    preparedStatement.setString(1, CEDULAB);
+
+                    int filasEliminadas = preparedStatement.executeUpdate();
+                    if (filasEliminadas>0){
+                        System.out.println("El estudiante con cedula " + CEDULAB + " se ha eliminado correctamente" );
+                    }else {
+                        System.out.println("No se ha encontrado ningun estudiante con cedula " + CEDULAB);
+                    }
+
+
+                } catch (SQLException e2) {
+                    System.out.println("No se pudo conectar con la base de datos");
+                    throw new RuntimeException(e2);
+                }
+
+
             }
         });
     }
