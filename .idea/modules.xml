@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Actualizar-POO.iml" filepath="$PROJECT_DIR$/.idea/Actualizar-POO.iml" />
       <module fileurl="file://$PROJECT_DIR$/COMANDOS POO/COMANDOS POO.iml" filepath="$PROJECT_DIR$/COMANDOS POO/COMANDOS POO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DELETE/DELETE.iml" filepath="$PROJECT_DIR$/DELETE/DELETE.iml" />
     </modules>
   </component>
 </project>
